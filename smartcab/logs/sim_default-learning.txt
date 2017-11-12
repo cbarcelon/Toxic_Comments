@@ -1,0 +1,472 @@
+/-----------------------------------------
+| State-action rewards from Q-Learning
+\-----------------------------------------
+
+State(waypoint='left', lights='green', left='forward', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.85
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='green', left='forward', oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='green', left='left', oncoming='right')
+ -- forward : 0.75
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='red', left='forward', oncoming='forward')
+ -- forward : -20.42
+ -- right : -10.11
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='red', left='forward', oncoming=None)
+ -- forward : 0.00
+ -- right : -9.59
+ -- None : -0.23
+ -- left : 0.00
+
+State(waypoint='forward', lights='red', left='forward', oncoming='right')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.89
+ -- left : 0.00
+
+State(waypoint='right', lights='green', left='forward', oncoming='right')
+ -- forward : 0.26
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='green', left='left', oncoming=None)
+ -- forward : 0.00
+ -- right : 0.43
+ -- None : -3.97
+ -- left : 2.09
+
+State(waypoint='left', lights='red', left='right', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='forward', lights='green', left=None, oncoming='left')
+ -- forward : 1.54
+ -- right : 0.00
+ -- None : -2.27
+ -- left : -0.01
+
+State(waypoint='right', lights='red', left='right', oncoming=None)
+ -- forward : -7.79
+ -- right : 0.00
+ -- None : 0.07
+ -- left : -5.46
+
+State(waypoint='forward', lights='red', left=None, oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.94
+ -- None : 1.91
+ -- left : -7.20
+
+State(waypoint='left', lights='green', left='right', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='red', left=None, oncoming='right')
+ -- forward : 0.00
+ -- right : 0.20
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='forward', lights='green', left='left', oncoming='left')
+ -- forward : 1.29
+ -- right : 0.44
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='green', left=None, oncoming='left')
+ -- forward : -0.15
+ -- right : 1.77
+ -- None : -2.99
+ -- left : 0.74
+
+State(waypoint='left', lights='green', left='left', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.79
+
+State(waypoint='forward', lights='green', left='right', oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='forward', lights='red', left=None, oncoming=None)
+ -- forward : -10.34
+ -- right : 0.82
+ -- None : 1.94
+ -- left : -9.31
+
+State(waypoint='left', lights='green', left=None, oncoming=None)
+ -- forward : 0.71
+ -- right : 0.70
+ -- None : -4.91
+ -- left : 1.50
+
+State(waypoint='left', lights='red', left=None, oncoming='forward')
+ -- forward : -22.52
+ -- right : 0.78
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='green', left='left', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='forward', lights='red', left=None, oncoming='right')
+ -- forward : 0.00
+ -- right : 0.63
+ -- None : 2.12
+ -- left : -19.80
+
+State(waypoint='left', lights='red', left='left', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.53
+ -- None : 0.00
+ -- left : -4.72
+
+State(waypoint='left', lights='green', left='right', oncoming=None)
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 1.17
+
+State(waypoint='right', lights='red', left=None, oncoming=None)
+ -- forward : -24.30
+ -- right : 2.63
+ -- None : 1.23
+ -- left : -9.97
+
+State(waypoint='left', lights='red', left=None, oncoming='left')
+ -- forward : -20.15
+ -- right : 0.06
+ -- None : 1.40
+ -- left : -7.83
+
+State(waypoint='forward', lights='red', left='left', oncoming='forward')
+ -- forward : -14.80
+ -- right : 0.45
+ -- None : 1.58
+ -- left : -4.64
+
+State(waypoint='right', lights='green', left=None, oncoming='right')
+ -- forward : -0.01
+ -- right : 0.00
+ -- None : 0.00
+ -- left : -10.40
+
+State(waypoint='forward', lights='green', left='forward', oncoming=None)
+ -- forward : 0.93
+ -- right : -0.06
+ -- None : 0.00
+ -- left : -0.11
+
+State(waypoint='forward', lights='green', left='right', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='red', left='forward', oncoming=None)
+ -- forward : 0.00
+ -- right : -10.39
+ -- None : 0.98
+ -- left : -20.00
+
+State(waypoint='right', lights='red', left=None, oncoming='forward')
+ -- forward : -19.64
+ -- right : 2.07
+ -- None : 0.37
+ -- left : 0.00
+
+State(waypoint='forward', lights='red', left='left', oncoming=None)
+ -- forward : -20.16
+ -- right : 0.03
+ -- None : 1.19
+ -- left : -5.27
+
+State(waypoint='left', lights='green', left='forward', oncoming='right')
+ -- forward : 0.48
+ -- right : 0.14
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='red', left='right', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.67
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='forward', lights='green', left='forward', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.50
+
+State(waypoint='forward', lights='red', left='forward', oncoming='left')
+ -- forward : -20.18
+ -- right : 0.00
+ -- None : 1.12
+ -- left : -20.43
+
+State(waypoint='right', lights='red', left='forward', oncoming='right')
+ -- forward : 0.00
+ -- right : -9.76
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='forward', lights='green', left='forward', oncoming='right')
+ -- forward : 0.00
+ -- right : 0.78
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='red', left='left', oncoming='forward')
+ -- forward : 0.00
+ -- right : 1.24
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='red', left='left', oncoming=None)
+ -- forward : 0.00
+ -- right : 0.48
+ -- None : 0.00
+ -- left : -4.55
+
+State(waypoint='right', lights='green', left='forward', oncoming=None)
+ -- forward : 0.00
+ -- right : 1.92
+ -- None : -2.56
+ -- left : 0.00
+
+State(waypoint='left', lights='green', left='forward', oncoming='forward')
+ -- forward : 0.26
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='forward', lights='green', left='left', oncoming=None)
+ -- forward : 2.18
+ -- right : 0.42
+ -- None : -2.97
+ -- left : 0.00
+
+State(waypoint='right', lights='red', left=None, oncoming='right')
+ -- forward : 0.00
+ -- right : 1.46
+ -- None : 0.00
+ -- left : -20.47
+
+State(waypoint='left', lights='green', left='left', oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : -10.14
+
+State(waypoint='left', lights='green', left='right', oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='green', left=None, oncoming='left')
+ -- forward : 0.82
+ -- right : 0.41
+ -- None : -4.34
+ -- left : 1.83
+
+State(waypoint='left', lights='green', left='forward', oncoming=None)
+ -- forward : 1.31
+ -- right : 0.62
+ -- None : -2.69
+ -- left : 0.00
+
+State(waypoint='right', lights='green', left='left', oncoming=None)
+ -- forward : 1.10
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.24
+
+State(waypoint='forward', lights='red', left='right', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='forward', lights='green', left=None, oncoming='forward')
+ -- forward : 2.06
+ -- right : 0.29
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='red', left='right', oncoming='forward')
+ -- forward : -5.09
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='red', left='left', oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='green', left='right', oncoming='right')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : -2.77
+ -- left : 0.00
+
+State(waypoint='left', lights='red', left='forward', oncoming='left')
+ -- forward : 0.00
+ -- right : -10.32
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='red', left='right', oncoming=None)
+ -- forward : 0.00
+ -- right : 0.47
+ -- None : 0.48
+ -- left : 0.00
+
+State(waypoint='forward', lights='green', left='right', oncoming=None)
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='red', left=None, oncoming=None)
+ -- forward : -6.99
+ -- right : -0.38
+ -- None : 1.76
+ -- left : -29.98
+
+State(waypoint='right', lights='green', left='right', oncoming=None)
+ -- forward : 0.74
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.61
+
+State(waypoint='forward', lights='red', left='right', oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 1.45
+ -- left : 0.00
+
+State(waypoint='forward', lights='green', left=None, oncoming=None)
+ -- forward : 2.41
+ -- right : 0.39
+ -- None : -2.91
+ -- left : 0.62
+
+State(waypoint='forward', lights='green', left=None, oncoming='right')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : -2.81
+ -- left : -9.95
+
+State(waypoint='forward', lights='red', left='right', oncoming='right')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='green', left=None, oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : -2.17
+ -- left : -10.24
+
+State(waypoint='forward', lights='red', left='left', oncoming='left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='red', left='right', oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.79
+ -- left : 0.00
+
+State(waypoint='right', lights='green', left=None, oncoming=None)
+ -- forward : 1.15
+ -- right : 1.10
+ -- None : -5.14
+ -- left : 0.66
+
+State(waypoint='forward', lights='red', left='forward', oncoming=None)
+ -- forward : -20.14
+ -- right : -14.68
+ -- None : 2.03
+ -- left : -19.74
+
+State(waypoint='forward', lights='red', left='right', oncoming=None)
+ -- forward : 0.00
+ -- right : -0.05
+ -- None : 0.00
+ -- left : -4.61
+
+State(waypoint='forward', lights='red', left=None, oncoming='left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 1.93
+ -- left : -5.25
+
+State(waypoint='right', lights='green', left='forward', oncoming='left')
+ -- forward : 0.00
+ -- right : 1.57
+ -- None : 0.00
+ -- left : 0.17
+
+State(waypoint='forward', lights='green', left='forward', oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.16
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='left', lights='red', left='left', oncoming=None)
+ -- forward : -4.69
+ -- right : 1.28
+ -- None : 0.00
+ -- left : 0.00
+
+State(waypoint='right', lights='green', left=None, oncoming='forward')
+ -- forward : 0.00
+ -- right : 0.98
+ -- None : -2.97
+ -- left : 0.00
+
+State(waypoint='right', lights='red', left=None, oncoming='left')
+ -- forward : -4.67
+ -- right : 2.26
+ -- None : 0.29
+ -- left : -7.44
+
+State(waypoint='forward', lights='green', left='left', oncoming='right')
+ -- forward : 1.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
